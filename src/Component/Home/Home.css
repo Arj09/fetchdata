@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.title{
+    text-align: center;
+    font-size: 6vmin;
+    padding: 50px auto;
+   
+}
+.centerline{
+    width: 80%;
+    margin: 20px auto;
+    justify-content: center;
+}
+.container{
+    width: 80%;
+    display: grid;
+    margin: 10px auto;
+    
+    justify-content: center;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    align-items: center;
+    text-align: center;
+}
+.items{
+    list-style: none;
+    margin: 10px auto;
+    cursor: pointer;
+    
+}
+.item-image{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+
+    
+}
+.item-name{
+    margin: 10px auto;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.container1{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    margin: 10px auto;
+}
+.handlebtn{
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    padding: 0.5vw 2vw;
+    font-size: 4vmin;
+    border: 0.2px solid blue;
+    justify-content: center;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+div{
+    margin: 5px auto;
+}
+.action{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 5px;
+}
+.hidden{
+    display: none;
+}
+
+.container12{
+    display: flex;
+    width: 60vw;
+    margin: 20px auto;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1vmin;
+}
+input{
+    width: 50vw;
+    padding: 0.5vw 2vw;
+    margin: 10px auto;
+}
+.handlebtn1{
+    width: 50vw;
+    padding: 0.5vw 2vw;
+    margin: 10px auto;
+    font-size: 4vmin;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    
+    border: 0.2px solid blue;
+
+}
+@media (max-width:1080px) {
+    .container{
+        display: block;
+       
+    }
+    
+}
