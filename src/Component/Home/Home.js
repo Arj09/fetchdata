@@ -12,6 +12,7 @@ export const Home = ()=>{
     const [allData, setAllData] = useState()
     const [Booking, setBooking] = useState({})
     const [handleform, setHandleform] = useState(true)
+   
     
    
     const [show, setShow] = useState(true)
@@ -26,7 +27,9 @@ export const Home = ()=>{
             console.log(res.data)
             
         }).catch((err)=>{
-            console.log(err)
+            console.log(err.response.data.message)
+            
+           
         })
         
 
@@ -67,7 +70,7 @@ export const Home = ()=>{
        
     }
    
-    
+
    
 
     
@@ -85,10 +88,14 @@ export const Home = ()=>{
                             <ul className='items' key={index}>
                                 <li className=' item-image ' onClick={()=>handleID(index)}><img src={user.show.image.medium} alt='loading' /></li>
                                 <li className='item-name' >{user.show.name}</li>
+                                
                             </ul>
                         )
                     })
+                    
+                    
                 }
+          
                 </div>
                 
                 <hr className='centerline'/>
@@ -98,10 +105,10 @@ export const Home = ()=>{
                 <>
                
                 <div className={handleform ? 'container1': 'hidden' }>
-                <div className='title'> Summary </div>
+                <div className='title'> Movie detail </div>
                 <hr className='centerline'/>
                 
-                <div style={{width:'80%', margin:'10px auto'}}  >{user[userId].show.summary}</div>
+                <div style={{width:'80%', margin:'10px auto'}}  >Summary : {user[userId].show.summary}</div>
                 <div style={{width:'80%', margin:'10px auto'}}  >{`Movie name : ${user[userId].show.name}`}</div>
                 <div style={{width:'80%', margin:'10px auto'}}  >Movie officialSite : <a href={user[userId].show.officialSite} >{user[userId].show.officialSite}</a></div>
                 <div style={{width:'80%', margin:'10px auto'}}  >{`Movie language : ${user[userId].show.language}`}</div>
