@@ -109,7 +109,7 @@ export const Home = ()=>{
                 <div style={{width:'80%', margin:'10px auto'}}  >{`Movie rating : ${user[userId].show.rating.average}`}</div>
                 <div style={{width:'80%', margin:'10px auto'}}  >{`Movie status : ${user[userId].show.status}`}</div>
                 <div style={{width:'80%', margin:'10px auto'}}  >{`Movie time : ${user[userId].show.schedule.time}`}</div>
-                <div style={{width:'80%', margin:'10px auto'}}  >{`Movie time : ${user[userId].show.schedule.days}`}</div>
+                <div style={{width:'80%', margin:'10px auto'}}  >{`Movie day : ${user[userId].show.schedule.days}`}</div>
                 <div className='action' style={{width:'80%', margin:'10px auto'}} >
                 <button className='handlebtn'  onClick={handleBack}>Back</button>
                 <button className='handlebtn'  onClick={handleBooking}>Book Ticket</button>
