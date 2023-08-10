@@ -109,6 +109,7 @@ export const Home = ()=>{
 
    const handleClearFilter = ()=>{
     setCategory('All')
+    setlanguage('All')
     
     setMovieName('')
     setStatus('All')
