@@ -104,10 +104,62 @@ input{
     border: 0.2px solid blue;
 
 }
+.filter{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80vw;
+    margin: 20px auto;
+}
+
+select{
+    padding: 0.5vw 1vw;
+    background-color: blue;
+    color: white;
+    border: 0.2px solid blue;
+    margin: 0.5vw 1vw;
+    
+    font-size: 2vmin;
+}
+option{
+    font-size: 2vmin;
+    padding: 0.5vw 1vw;
+
+}
+.searchmovie{
+    
+    
+}
+.clearbtn{
+    
+    padding: 0.5vw 2vw;
+    margin: 10px auto;
+    font-size: 2vmin;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    
+    border: 0.2px solid blue;
+    
+}
+
+.hide{
+    display: none;
+}
+
+.hide1{
+    display: block;
+    text-align: center;
+    font-size : 5vw
+}
+
+
 @media (max-width:1080px) {
     .container{
         display: block;
        
     }
+   
     
 }

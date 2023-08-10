@@ -12,10 +12,32 @@ export const Home = ()=>{
     const [allData, setAllData] = useState()
     const [Booking, setBooking] = useState({})
     const [handleform, setHandleform] = useState(true)
+    const [movieName, setMovieName] = useState('')
+    const [Category, setCategory] = useState('All')
+    const [language, setlanguage] = useState('All')
+    
+    const [status, setStatus] = useState('All')
+    const [userNotFound, setuserNotFound] = useState(true)
    
     
    
     const [show, setShow] = useState(true)
+    
+    const categorySelecter = () => {
+        return [...new Set(user.map((user) => user.show.type))];
+      };
+
+      const languageSelecter = () => {
+        return [...new Set(user.map((user) => user.show.language))];
+      }; 
+     
+      const statusSelecter = () => {
+        return [...new Set(user.map((user) => user.show.status))];
+      };   
+     
+      
+
+   
 
 
    
@@ -69,9 +91,30 @@ export const Home = ()=>{
         setShow(true)
        
     }
+
+    const handleCategory =(e)=>{
+        setCategory(e.target.value)
+    }
+    const handleLanguage =(e)=>{
+        setlanguage(e.target.value)
+    }
+   
+    
+    const handleStatus =(e)=>{
+        setStatus(e.target.value)
+    }
    
 
    
+
+   const handleClearFilter = ()=>{
+    setCategory('All')
+    
+    setMovieName('')
+    setStatus('All')
+   }
+
+   console.log(user.length)
 
     
     return(
@@ -81,22 +124,90 @@ export const Home = ()=>{
                 <>
                 <div className='title'> Movie </div>
                 <hr className='centerline'/>
+                <div className='filter'>
+                    
+                    <input className='searchmovie' placeholder=' Ex- formal 1'   onChange={(e)=>setMovieName(e.target.value)}/>
+                    <div className='choice'>
+
+                    <select value={Category} onChange={handleCategory}>
+                        <option value="All">Category</option>
+                        
+                            {categorySelecter().map((gender1) => {
+                                return (
+                                        <option value={gender1} key={gender1}>
+                                            {gender1}
+                                        </option>
+                                        );
+                                     })}
+                    </select>
+                    <select value={language} onChange={handleLanguage}>
+                        <option value="All">Language</option>
+                        
+                            {languageSelecter().map((gender1) => {
+                                return (
+                                        <option value={gender1} key={gender1}>
+                                            {gender1}
+                                        </option>
+                                        );
+                                     })}
+                    </select>
+
+                 
+                    <select value={status} onChange={handleStatus}>
+                        <option value="All">Status </option>
+                        
+                            {statusSelecter().map((gender1) => {
+                                return (
+                                        <option value={gender1} key={gender1}>
+                                            {gender1}
+                                        </option>
+                                        );
+                                     })}
+                    </select>
+
+                    <button className='clearbtn'  onClick={handleClearFilter}> Clear filter</button>
+                   
+                                     
+
+                    </div>
+                    <hr className='centerline'/>
+                </div>
+
+                
                 <div className='container'>
+                   
+
+
                 {
-                    user.map((user, index)=>{
+                    user
+                    .filter((user)=> movieName ? user.show.name.toLowerCase().startsWith(movieName.toLowerCase()) : user)
+                    
+                    
+                    .filter((user) => (Category === 'All' ? user : user.show.type === Category))
+                    .filter((user) => (language === 'All' ? user : user.show.language === language))
+                    .filter((user) => (status === 'All' ? user : user.show.status === status))
+                    
+                  
+                    
+                    .map((user, index)=>{
                         return(
                             <ul className='items' key={index}>
                                 <li className=' item-image ' onClick={()=>handleID(index)}><img src={user.show.image.medium} alt='loading' /></li>
-                                <li className='item-name' >{user.show.name}</li>
+                                <li className='item-name'>{user.show.name}</li>
+                               
+                                
                                 
                             </ul>
+                            
                         )
+                        
                     })
                     
                     
                 }
           
                 </div>
+                <div className={userNotFound ? 'hide' : 'hide1' }>no result found</div>
                 
                 <hr className='centerline'/>
                 </>
