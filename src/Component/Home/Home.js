@@ -9,29 +9,25 @@ export const Home = ()=>{
 
     const  [user, setUser] = useState([]);
     const [userId, setUserID] = useState()
-    const [allData, setAllData] = useState()
     const [Booking, setBooking] = useState({})
     const [handleform, setHandleform] = useState(true)
     const [movieName, setMovieName] = useState('')
     const [Category, setCategory] = useState('All')
     const [language, setlanguage] = useState('All')
-    
     const [status, setStatus] = useState('All')
-    const [userNotFound, setuserNotFound] = useState(true)
-   
-    
-   
     const [show, setShow] = useState(true)
+
+    
     
     const categorySelecter = () => {
         return [...new Set(user.map((user) => user.show.type))];
       };
 
-      const languageSelecter = () => {
+    const languageSelecter = () => {
         return [...new Set(user.map((user) => user.show.language))];
       }; 
      
-      const statusSelecter = () => {
+    const statusSelecter = () => {
         return [...new Set(user.map((user) => user.show.status))];
       };   
      
@@ -117,6 +113,17 @@ export const Home = ()=>{
 
    console.log(user.length)
 
+   const check = (data) =>{
+        if(data.length == 0){
+            return 'user not found'
+        }
+        else{
+            return data
+        }
+    }
+
+    var count = 0
+
     
     return(
         <>
@@ -133,10 +140,10 @@ export const Home = ()=>{
                     <select value={Category} onChange={handleCategory}>
                         <option value="All">Category</option>
                         
-                            {categorySelecter().map((gender1) => {
+                            {categorySelecter().map((Category) => {
                                 return (
-                                        <option value={gender1} key={gender1}>
-                                            {gender1}
+                                        <option value={Category} key={Category}>
+                                            {Category}
                                         </option>
                                         );
                                      })}
@@ -144,10 +151,10 @@ export const Home = ()=>{
                     <select value={language} onChange={handleLanguage}>
                         <option value="All">Language</option>
                         
-                            {languageSelecter().map((gender1) => {
+                            {languageSelecter().map((language) => {
                                 return (
-                                        <option value={gender1} key={gender1}>
-                                            {gender1}
+                                        <option value={language} key={language}>
+                                            {language}
                                         </option>
                                         );
                                      })}
@@ -157,10 +164,10 @@ export const Home = ()=>{
                     <select value={status} onChange={handleStatus}>
                         <option value="All">Status </option>
                         
-                            {statusSelecter().map((gender1) => {
+                            {statusSelecter().map((status) => {
                                 return (
-                                        <option value={gender1} key={gender1}>
-                                            {gender1}
+                                        <option value={status} key={status}>
+                                            {status}
                                         </option>
                                         );
                                      })}
@@ -182,22 +189,19 @@ export const Home = ()=>{
                 {
                     user
                     .filter((user)=> movieName ? user.show.name.toLowerCase().startsWith(movieName.toLowerCase()) : user)
-                    
-                    
                     .filter((user) => (Category === 'All' ? user : user.show.type === Category))
                     .filter((user) => (language === 'All' ? user : user.show.language === language))
                     .filter((user) => (status === 'All' ? user : user.show.status === status))
-                    
-                  
-                    
-                    .map((user, index)=>{
+                    .map((user, index)=>{ 
+                        count += 1
+
+                       
+
                         return(
+
                             <ul className='items' key={index}>
                                 <li className=' item-image ' onClick={()=>handleID(index)}><img src={user.show.image.medium} alt='loading' /></li>
                                 <li className='item-name'>{user.show.name}</li>
-                               
-                                
-                                
                             </ul>
                             
                         )
@@ -208,7 +212,9 @@ export const Home = ()=>{
                 }
           
                 </div>
-                <div className={userNotFound ? 'hide' : 'hide1' }>no result found</div>
+                
+                <div  style={{textAlign:'center'}} className={count ? 'hide' : 'hide1' }>no result found</div>
+                <div style={{textAlign:'center'}}></div>
                 
                 <hr className='centerline'/>
                 </>
